@@ -1,5 +1,8 @@
 FROM centos:6
 
+ARG file_evm="verilog-mode.el.gz"
+ARG url_donwload_evm="https://www.veripool.org/ftp/${file_evm}"
+
 RUN yum update -y
 RUN \rm /etc/localtime; ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 # add user 'eda'
@@ -19,5 +22,4 @@ RUN echo "Verilator has installed successfully"
 
 # for emacs-verilog-mode
 RUN yum install -y emacs 
-# RUN /etc/init.d/sshd start; echo "run sshd..."
-# CMD ["/usr/sbin/sshd", "-D"]
+RUN cd /tmp; wget ${url_donwload_evm}; gunzip ${file_evm}; mv verilog-mode.el /usr/share/emacs/23.1/lisp
