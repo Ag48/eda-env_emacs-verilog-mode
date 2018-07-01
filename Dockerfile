@@ -8,7 +8,6 @@ RUN \rm /etc/localtime; ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 # add user 'eda'
 RUN useradd -c 'for eda test' -s /bin/bash -d /home/eda eda
 RUN echo 'eda:I1oveEDA' |chpasswd
-RUN echo "User 'eda' has generated successfully" 
 
 # apply packages
 RUN yum install -y epel-release wget openssh-server
@@ -17,8 +16,7 @@ RUN yum install -y epel-release wget openssh-server
 RUN yum install -y git gcc gcc-c++ autoconf flex bison
 ## Test GCC & G++
 RUN which gcc g++; gcc --version; g++ --version
-RUN git clone http://git.veripool.org/git/verilator  /tmp/verilator; cd /tmp/verilator; autoconf; ./configure; make; make install
-RUN echo "Verilator has installed successfully" 
+RUN git clone http://git.veripool.org/git/verilator  /tmp/verilator; cd /tmp/verilator; autoconf; ./configure; make; make install; rm -rf /tmp/verilator
 
 # for emacs-verilog-mode
 RUN yum install -y emacs 
