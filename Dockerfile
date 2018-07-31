@@ -12,11 +12,11 @@ RUN echo 'eda:I1oveEDA' |chpasswd
 # apply packages
 RUN yum install -y epel-release wget openssh-server
 
-# for verilator
-RUN yum install -y git gcc gcc-c++ autoconf flex bison
-## Test GCC & G++
-RUN which gcc g++; gcc --version; g++ --version
-RUN git clone http://git.veripool.org/git/verilator  /tmp/verilator; cd /tmp/verilator; autoconf; ./configure; make; make install; rm -rf /tmp/verilator
+# # for verilator
+# RUN yum install -y git gcc gcc-c++ autoconf flex bison
+# ## Test GCC & G++
+# RUN which gcc g++; gcc --version; g++ --version
+# RUN git clone http://git.veripool.org/git/verilator  /tmp/verilator; cd /tmp/verilator; autoconf; ./configure; make; make install; rm -rf /tmp/verilator
 
 # for emacs-verilog-mode
 RUN yum install -y emacs 
