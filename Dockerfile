@@ -6,15 +6,17 @@ WORKDIR /tmp
 
 RUN rm /etc/localtime \
     && ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-# add user 'eda'
-RUN useradd -u 1000 -g 1000 -c 'for eda test' -s /bin/bash -d /home/eda eda \
-    && echo 'eda:I1oveEDA' |chpasswd
+# add user 'eda' & change uid + gid for writable authority in Linux Docker
+RUN useradd -u 1000 -c 'for eda test' -s /bin/bash -d /home/eda eda \
+    && echo 'eda:I1oveEDA' |chpasswd \
+    && groupmod -g 1000 eda
 
 # apply packages
 RUN yum update -y \
     && yum install -y \
          epel-release \
          emacs \
+         git \
          openssh-server \
          wget \
     && yum clean all
