@@ -7,9 +7,7 @@ WORKDIR /tmp
 RUN rm /etc/localtime \
     && ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 # add user 'eda' & change uid + gid for writable authority in Linux Docker
-RUN useradd -u 1000 -c 'for eda test' -s /bin/bash -d /home/eda eda \
-    && echo 'eda:I1oveEDA' |chpasswd \
-    && groupmod -g 1000 eda
+RUN echo 'root:I1oveEDA' | chpasswd
 
 # apply packages
 RUN yum update -y \
