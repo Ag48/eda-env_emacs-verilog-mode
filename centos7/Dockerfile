@@ -18,5 +18,4 @@ RUN yum update -y \
 # install emacs-verilog-mode
 RUN wget ${url_download_evm} \
     && gunzip ${file_evm} \
-    && emacs --verion \
     && mv verilog-mode.el /usr/share/emacs/${emacs_version}/lisp
